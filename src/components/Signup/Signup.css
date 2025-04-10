@@ -1,0 +1,22 @@
+.signup {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.register {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.registerButton {
+    margin: 10px;
+    max-width: 100px;
+}
