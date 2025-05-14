@@ -28,7 +28,7 @@ const SignUp = () => {
                         })
                     })
                     .then(result => result.json())
-                    navigate("/")
+                    .then(result => navigate("/"))
                 }
                 }>Register</button>
                 <button className="cancelButton" onClick={() => navigate("/")}>Cancel</button>
