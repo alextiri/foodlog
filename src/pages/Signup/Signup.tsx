@@ -6,6 +6,13 @@ const SignUp = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState<string>()
+    const [loading, setLoading] = useState<boolean>(false)
+    const validate = (email: string) => {
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return pattern.test(email)
+    }
+
     return(
         <div className="signup">
             <h1>Create an Account</h1>
@@ -15,11 +22,26 @@ const SignUp = () => {
             </div>
             <div className='input'>
                 <div>Password</div>
-                <input type='text' onChange={(event) => setPassword(event.target.value)}></input>
+                <input type='password' onChange={(event) => setPassword(event.target.value)}></input>
+            </div>
+            <div className="error">
+                {error}
             </div>
             <div className="register">
-                <button className="registerButton" onClick={() => {
-                    fetch("http://localhost:3000/signup", {
+                <button disabled={loading} className="registerButton" onClick={async() => {
+                    setLoading(true)
+                    if(validate(email) === false) {
+                        setError("E-mail address not valid")
+                        setLoading(false)
+                        return
+                    }
+                    if(password.length < 7) {
+                        setError("Password too short")
+                        setLoading(false)
+                        return
+                    }
+                    
+                    const response = await fetch("http://localhost:3000/signup", {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({
@@ -27,8 +49,14 @@ const SignUp = () => {
                             password: password
                         })
                     })
-                    .then(result => result.json())
-                    .then(result => navigate("/"))
+                    if(!response.ok) {
+                        const responseJSON = await response.json()
+                        setError(responseJSON.message)
+                        setLoading(false)
+                        return
+                    }
+                    setLoading(false)
+                    navigate('/')
                 }
                 }>Register</button>
                 <button className="cancelButton" onClick={() => navigate("/")}>Cancel</button>

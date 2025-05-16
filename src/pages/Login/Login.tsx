@@ -8,6 +8,7 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState()
+    const [loading, setLoading] = useState<boolean>(false)
     const setToken = useContext(TokenContext).setToken
 
     return (
@@ -27,7 +28,8 @@ const Login = () => {
                 </div>
             </div>
             <div className="buttons">
-                <button className = 'signin' onClick={() => {
+                <button disabled={loading} className = 'signin' onClick={() => {
+                    setLoading(true)
                     fetch('http://localhost:3000/signin', {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
@@ -40,10 +42,12 @@ const Login = () => {
                     .then(result => {
                         if(typeof result.token === "string") {
                             setToken(result.token)
+                            setLoading(false)
                             navigate('home')
                         }
                         else {
                             setError(result.message)
+                            setLoading(false)
                         }
                     }) 
                 }}>Sign in</button>
