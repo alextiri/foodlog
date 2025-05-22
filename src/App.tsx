@@ -9,6 +9,7 @@ import Login from './pages/Login/Login.tsx'
 import './App.css'
 import { TokenProvider } from "./contexts/TokenContext.tsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.tsx";
+import FoodEntry from "./pages/FoodEntry/FoodEntry.tsx";
 
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         <Home/>
       </ProtectedRoute>
     )
+  },
+  {
+    path: "home/foodentry",
+    element: <FoodEntry/>
   }
 ]);
 

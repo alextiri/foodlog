@@ -1,0 +1,54 @@
+h1 {
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    margin: 5px;
+}
+
+.name {
+    display: flex;
+    margin: 5px;
+}
+
+.weight {
+    display: flex;
+    margin: 5px;
+}
+
+.calories {
+    display: flex;
+    margin: 5px;
+}
+
+.proteins {
+    display: flex;
+    margin: 5px;
+}
+
+.carbs {
+    display: flex;
+    margin: 5px;
+}
+
+.fats {
+    display: flex;
+    margin: 5px;
+}
+
+.plannedTime {
+    display: flex;
+    margin: 5px;
+}
