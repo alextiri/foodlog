@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router';
 
 const FoodEntry = () => {
     const [name, setName] = useState('')
-    const [weight, setWeight] = useState(0)
-    const [calories, setCalories] = useState(0)
-    const [proteins, setProteins] = useState(0)
-    const [carbs, setCarbs] = useState(0)
-    const [fats, setFats] = useState(0)
-    const [plannedTime, setPlannedTime] = useState(0)
+    const [weight, setWeight] = useState('')
+    const [calories, setCalories] = useState('')
+    const [proteins, setProteins] = useState('')
+    const [carbs, setCarbs] = useState('')
+    const [fats, setFats] = useState('')
+    const [plannedTime, setPlannedTime] = useState('')
     const token = useContext(TokenContext).token
 
     const navigate = useNavigate()
@@ -23,12 +23,12 @@ const FoodEntry = () => {
             },
             body: JSON.stringify({
                 name: name,
-                weight: weight,
-                calories: calories,
-                proteins: proteins,
-                carbs: carbs,
-                fats: fats,
-                timestamp: plannedTime
+                weight: Number(weight),
+                calories: Number(calories),
+                proteins: Number(proteins),
+                carbs: Number(carbs),
+                fats: Number(fats),
+                timestamp: Date.parse(plannedTime)
             })
         })
         .then(result => {
@@ -43,31 +43,31 @@ const FoodEntry = () => {
             <div className="form">
                 <div className="formItem">
                     <div>Name</div>
-                    <input onChange={(event) => setName(event.target.value)}></input>
+                    <input value={name} onChange={(event) => setName(event.target.value)}></input>
                 </div>
                 <div className="formItem">
                     <div>Weight</div>
-                    <input onChange={(event) => setWeight(Number(event.target.value))}></input>
+                    <input value={weight} onChange={(event) => setWeight(event.target.value)}></input>
                 </div>
                 <div className="formItem">
                     <div>Calories</div>
-                    <input onChange={(event) => setCalories(Number(event.target.value))}></input>
+                    <input value={calories} onChange={(event) => setCalories(event.target.value)}></input>
                 </div>
                 <div className="formItem">
                     <div>Proteins</div>
-                    <input onChange={(event) => setProteins(Number(event.target.value))}></input>
+                    <input value={proteins} onChange={(event) => setProteins(event.target.value)}></input>
                 </div>
                 <div className="formItem">
                     <div>Carbs</div>
-                    <input onChange={(event) => setCarbs(Number(event.target.value))}></input>
+                    <input value={carbs} onChange={(event) => setCarbs(event.target.value)}></input>
                 </div>
                 <div className='formItem'>
                     <div>Fats</div>
-                    <input onChange={(event) => setFats(Number(event.target.value))}></input>
+                    <input value={fats} onChange={(event) => setFats(event.target.value)}></input>
                 </div>
                 <div className='formItem'>
                     <div>Planned time</div>
-                    <input type="date" onChange={(event) => setPlannedTime(Date.parse(event.target.value))}></input>
+                    <input value={plannedTime} type="date" onChange={(event) => setPlannedTime(event.target.value)}></input>
                 </div>
             </div>
             <div className="menuButtons">
