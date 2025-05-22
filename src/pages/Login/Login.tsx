@@ -11,6 +11,30 @@ const Login = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const setToken = useContext(TokenContext).setToken
 
+    const login = () => {
+        setLoading(true)
+        fetch('http://localhost:3000/signin', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+        .then(result => result.json())
+        .then(result => {
+            if(typeof result.token === "string") {
+                setToken(result.token)
+                setLoading(false)
+                navigate('home')
+            }
+            else {
+                setError(result.message)
+                setLoading(false)
+            }
+        }) 
+    }
+
     return (
         <div className = 'comp'>
             <h1>Sign in here</h1>
@@ -28,29 +52,7 @@ const Login = () => {
                 </div>
             </div>
             <div className="buttons">
-                <button disabled={loading} className = 'signin' onClick={() => {
-                    setLoading(true)
-                    fetch('http://localhost:3000/signin', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            email: email,
-                            password: password
-                        })
-                    })
-                    .then(result => result.json())
-                    .then(result => {
-                        if(typeof result.token === "string") {
-                            setToken(result.token)
-                            setLoading(false)
-                            navigate('home')
-                        }
-                        else {
-                            setError(result.message)
-                            setLoading(false)
-                        }
-                    }) 
-                }}>Sign in</button>
+                <button disabled={loading} className = 'signin' onClick={login}>Sign in</button>
                 <button onClick={() => {
                     navigate('signup')
                 }}>Sign up</button>

@@ -2,16 +2,60 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 
 .dashboard {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+
 .buttons {
-    margin: 20px;
+    margin: 10px;
 }
 
+.entry {
+    display: flex;
+    justify-content: space-between;
+    border: solid black 2px;
+    background-color: white;
+}
+
+.tableHeader {
+    display: flex;
+    justify-content: space-between;
+    border: solid black 2px;
+    background-color: white;
+    min-width: 500px;
+    margin: 10px;
+}
+
+.table {
+    min-width: 500px;
+}
+
+.entryProp {
+    margin: 3px;
+    flex-grow: 1;
+    text-align: center;
+    flex-basis: 16%;
+}
+
+.headerProp {
+    flex-grow: 1;
+    text-align: center;
+    flex-basis: 16%;
+}
+
+.signout {
+    max-width: 100px;
+    margin: 10px;
+}
+
+.pageButtons {
+    margin: 10px;
+}

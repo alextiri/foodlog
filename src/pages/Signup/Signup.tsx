@@ -8,10 +8,43 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState<string>()
     const [loading, setLoading] = useState<boolean>(false)
+
     const validate = (email: string) => {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return pattern.test(email)
     }
+
+    const submit = async() => {
+        setLoading(true)
+        if(validate(email) === false) {
+            setError("E-mail address not valid")
+            setLoading(false)
+            return
+        }
+        if(password.length < 7) {
+            setError("Password too short")
+            setLoading(false)
+            return
+        }
+        
+        const response = await fetch("http://localhost:3000/signup", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+        if(!response.ok) {
+            const responseJSON = await response.json()
+            setError(responseJSON.message)
+            setLoading(false)
+            return
+        }
+        setLoading(false)
+        navigate('/')
+    }
+
 
     return(
         <div className="signup">
@@ -28,37 +61,7 @@ const SignUp = () => {
                 {error}
             </div>
             <div className="register">
-                <button disabled={loading} className="registerButton" onClick={async() => {
-                    setLoading(true)
-                    if(validate(email) === false) {
-                        setError("E-mail address not valid")
-                        setLoading(false)
-                        return
-                    }
-                    if(password.length < 7) {
-                        setError("Password too short")
-                        setLoading(false)
-                        return
-                    }
-                    
-                    const response = await fetch("http://localhost:3000/signup", {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            email: email,
-                            password: password
-                        })
-                    })
-                    if(!response.ok) {
-                        const responseJSON = await response.json()
-                        setError(responseJSON.message)
-                        setLoading(false)
-                        return
-                    }
-                    setLoading(false)
-                    navigate('/')
-                }
-                }>Register</button>
+                <button disabled={loading} className="registerButton" onClick={submit}>Register</button>
                 <button className="cancelButton" onClick={() => navigate("/")}>Cancel</button>
             </div>
         </div>
