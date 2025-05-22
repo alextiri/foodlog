@@ -20,7 +20,7 @@ const Home = () => {
     const [entries, setEntries] = useState<Array<Entry>>([])
 
     useEffect(() => {
-        fetch('http://localhost:3000/foodentries?pageSize=5', {
+        fetch('http://localhost:3000/foodentries?pageSize=10', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const Home = () => {
         <div className="home">
             <div className="buttons">
                 <button onClick={() => {
-                    navigate('foodentry')
+                    navigate('/foodentry')
                 }}>Create a new entry</button>
                 <button>Your history</button>
             </div>

@@ -1,4 +1,4 @@
-h1 {
+.title {
     text-align: center;
 }
 
@@ -8,47 +8,13 @@ h1 {
     align-items: center;
 }
 
-.buttons {
+.menuButtons {
     margin: 10px;
     display: flex;
     justify-content: space-between;
 }
 
-button {
-    margin: 5px;
-}
-
-.name {
+.formItem {
     display: flex;
-    margin: 5px;
-}
-
-.weight {
-    display: flex;
-    margin: 5px;
-}
-
-.calories {
-    display: flex;
-    margin: 5px;
-}
-
-.proteins {
-    display: flex;
-    margin: 5px;
-}
-
-.carbs {
-    display: flex;
-    margin: 5px;
-}
-
-.fats {
-    display: flex;
-    margin: 5px;
-}
-
-.plannedTime {
-    display: flex;
-    margin: 5px;
+    padding: 5px;
 }

@@ -39,38 +39,38 @@ const FoodEntry = () => {
     
     return (
         <div>
-            <h1>Plan a meal</h1>
+            <h1 className="title">Plan a meal</h1>
             <div className="form">
-                <div className="name">
+                <div className="formItem">
                     <div>Name</div>
                     <input onChange={(event) => setName(event.target.value)}></input>
                 </div>
-                <div className="weight">
+                <div className="formItem">
                     <div>Weight</div>
                     <input onChange={(event) => setWeight(Number(event.target.value))}></input>
                 </div>
-                <div className="calories">
+                <div className="formItem">
                     <div>Calories</div>
                     <input onChange={(event) => setCalories(Number(event.target.value))}></input>
                 </div>
-                <div className="proteins">
+                <div className="formItem">
                     <div>Proteins</div>
                     <input onChange={(event) => setProteins(Number(event.target.value))}></input>
                 </div>
-                <div className="carbs">
+                <div className="formItem">
                     <div>Carbs</div>
                     <input onChange={(event) => setCarbs(Number(event.target.value))}></input>
                 </div>
-                <div className='fats'>
+                <div className='formItem'>
                     <div>Fats</div>
                     <input onChange={(event) => setFats(Number(event.target.value))}></input>
                 </div>
-                <div className='plannedTime'>
+                <div className='formItem'>
                     <div>Planned time</div>
                     <input type="date" onChange={(event) => setPlannedTime(Date.parse(event.target.value))}></input>
                 </div>
             </div>
-            <div className="buttons">
+            <div className="menuButtons">
                 <button onClick={create}>Create your meal</button>
                 <button onClick={() => {
                     navigate('/home')
